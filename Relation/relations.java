@@ -36,18 +36,23 @@ class Relations
         //Prompt the user to enter a file name 
         System.out.println("Please enter the name of the file containing the matrix");
         fileName = stdIn.nextLine();
+        String currentDirectory = System.getProperty("user.dir");
+        String path = currentDirectory +"/Relation/"+ fileName;
+        System.out.println(path);
+        //"/Volumes/Macintosh HD/Volumes/Macintosh HD/Users/nfishel/LocalDocuments/m1.txt"
 
         //Open the file or throw an exception
         try
         {
-        fileReader = new FileReader("/Volumes/Macintosh HD/Volumes/Macintosh HD/Users/nfishel/LocalDocuments/m1.txt");
+        fileReader = new FileReader(path);
          br = new BufferedReader(fileReader);
             //next try block is for testing purpose only
             try
             {
-             for(int i = 0; i<=7; i++){
-                line = br.readLine();
-                System.out.println(line);
+                System.out.println("The matrix: ");
+                for(int i = 0; i<=7; i++){
+                    line = br.readLine();
+                    System.out.println(line);
              }
             }
             catch(IOException e)
