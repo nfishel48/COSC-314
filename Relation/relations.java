@@ -128,11 +128,40 @@ public static void isAntisymetric()
             {
                 if(matrix[j][i] == 1)
                 {                    //if corresponding 1 = 1 
-                  
                     antisymmetric = false;
                 }
                 else                  //if corresponding 1 = 0
                     antisymmetric = true;
+            }
+        }
+    }
+}
+
+/***********************************************************************************************************************/
+
+public static void isTransitive()
+{
+    for(int i = 0; i<=7; i++)// loop through rows
+    {
+        for(int j = 0; j<=7; j++)// loop through colums
+        {
+            if(matrix[i][j] == 1) //if aRb find and relations of bRc and verify that aRc 
+            {
+                for(int k = 0; k<=7; k++)//loop through row to find any realtions
+                {
+                    if(matrix[j][k] == 1 && j!=k) //found a realation bRc
+                    {
+                        if(matrix[i][k] == 1) //check for aRc
+                        {
+                            transitive = true;
+                        }
+                        else
+                        {
+                            transitive=false;
+                        }   
+                        
+                    }
+                }
             }
         }
     }
@@ -146,8 +175,9 @@ public static void isAntisymetric()
             isReflexive();
             isSymetric();
             isAntisymetric();
-            if(antisymmetric == true )
-                System.out.print("TRUEEEEE");
+            isTransitive();
+            if(transitive == true )
+                System.out.println("TRUEEEEE");
         }
 
 }
