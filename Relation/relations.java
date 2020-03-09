@@ -27,6 +27,9 @@ class Relations
     static FileReader fileReader;
     static BufferedReader br;
 
+    //Matrix 
+    static int[][] matrix = new int[8][8];
+
 
 
 /***********************************************************************************************************************/
@@ -37,23 +40,30 @@ class Relations
         System.out.println("Please enter the name of the file containing the matrix");
         fileName = stdIn.nextLine();
         String currentDirectory = System.getProperty("user.dir");
-        String path = currentDirectory +"/Relation/"+ fileName;
-        System.out.println(path);
+        String path = currentDirectory +"/"+ fileName;
+        System.out.println("The path entered was "+path);
         //"/Volumes/Macintosh HD/Volumes/Macintosh HD/Users/nfishel/LocalDocuments/m1.txt"
 
         //Open the file or throw an exception
         try
         {
-        fileReader = new FileReader(path);
-         br = new BufferedReader(fileReader);
-            //next try block is for testing purpose only
+         br = new BufferedReader(fileReader = new FileReader(path));
+            //Read in maxtrix to a 2D array
             try
             {
-                System.out.println("The matrix: ");
                 for(int i = 0; i<=7; i++){
-                    line = br.readLine();
-                    System.out.println(line);
-             }
+                    for(int j = 0; j<=7; j++)
+                    {
+                        int a = br.read()-48;   //Read the character and subract 48 to get int value
+                        if(a == -16)            //If it is a space skip it
+                             a = br.read()-48; 
+                        if(a == -38)            //IF it is a new line skip it
+                            a = br.read()-48;
+                        matrix[i][j] = a;
+                        System.out.print(matrix[i][j]+" ");
+                    }
+                    System.out.println();
+                }
             }
             catch(IOException e)
             {
