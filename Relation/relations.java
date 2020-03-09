@@ -94,13 +94,37 @@ class Relations
         }
     }
 
+/***********************************************************************************************************************/
 
-public static void main(String[] args)
+    public static void isSymetric()
     {
-        getFile();
-        isReflexive();
-        if(reflexive == true )
-            System.out.print("TRUEEEEE");
+        for(int i = 0; i<=7; i++) //loop through rows
+        {
+            for(int j = i+1; j<=7; j++) //loop through colums
+            {
+                if(matrix[i][j] == 1) //if a one is found
+                {
+                    System.out.println("Found 1 at "+i+","+j);
+                    if(matrix[j][i] == 1)
+                    {   //if corresponding 1 = 1 
+                        System.out.println("Match at "+j+","+i);
+                        symmetric = true;
+                    }
+                    else                  //if corresponding 1 = 0
+                        symmetric = false;
+                }
+
+            }
+        }
     }
+
+    public static void main(String[] args)
+        {
+            getFile();
+            isReflexive();
+            isSymetric();
+            if(symmetric == true )
+                System.out.print("TRUEEEEE");
+        }
 
 }
