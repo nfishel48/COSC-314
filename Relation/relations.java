@@ -104,26 +104,49 @@ class Relations
             {
                 if(matrix[i][j] == 1) //if a one is found
                 {
-                    System.out.println("Found 1 at "+i+","+j);
                     if(matrix[j][i] == 1)
-                    {   //if corresponding 1 = 1 
-                        System.out.println("Match at "+j+","+i);
+                    {                    //if corresponding 1 = 1 
+                      
                         symmetric = true;
                     }
                     else                  //if corresponding 1 = 0
                         symmetric = false;
                 }
-
             }
         }
     }
+
+/***********************************************************************************************************************/
+
+public static void isAntisymetric()
+{
+    for(int i = 0; i<=7; i++) //loop through rows
+    {
+        for(int j = i+1; j<=7; j++) //loop through colums
+        {
+            if(matrix[i][j] == 1) //if a one is found
+            {
+                if(matrix[j][i] == 1)
+                {                    //if corresponding 1 = 1 
+                  
+                    antisymmetric = false;
+                }
+                else                  //if corresponding 1 = 0
+                    antisymmetric = true;
+            }
+        }
+    }
+}
+
+
 
     public static void main(String[] args)
         {
             getFile();
             isReflexive();
             isSymetric();
-            if(symmetric == true )
+            isAntisymetric();
+            if(antisymmetric == true )
                 System.out.print("TRUEEEEE");
         }
 
