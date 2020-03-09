@@ -12,11 +12,11 @@ package Relation;
 class Relations
 {
     //Global Flag varibles
-    boolean reflexive = false;
-    boolean symmetric =false;
-    boolean antisymmetric = false;
-    boolean transitive = false;
-    boolean equiv_relation = false;
+    static boolean reflexive = false;
+    static boolean symmetric =false;
+    static boolean antisymmetric = false;
+    static boolean transitive = false;
+    static boolean equiv_relation = false;
 
     //scanner
     static Scanner stdIn = new Scanner(System.in);
@@ -32,7 +32,10 @@ class Relations
 
 
 
-/***********************************************************************************************************************/
+/**********************************************************************************************************************
+ This Method will get a file name and load that file into the Reader
+ Then it will save the matrix in the file to a 2D array as well as print it to the screen
+*/
    
     public static void getFile()
     {
@@ -42,7 +45,6 @@ class Relations
         String currentDirectory = System.getProperty("user.dir");
         String path = currentDirectory +"/"+ fileName;
         System.out.println("The path entered was "+path);
-        //"/Volumes/Macintosh HD/Volumes/Macintosh HD/Users/nfishel/LocalDocuments/m1.txt"
 
         //Open the file or throw an exception
         try
@@ -51,6 +53,7 @@ class Relations
             //Read in maxtrix to a 2D array
             try
             {
+                System.out.println("The matrix is:");
                 for(int i = 0; i<=7; i++){
                     for(int j = 0; j<=7; j++)
                     {
@@ -79,10 +82,25 @@ class Relations
 
 /***********************************************************************************************************************/
 
+    public static void isReflexive()
+    {
+        int check = 0;  //Increment this too check the main diagonial
+        for(int i = 0; i<=7; i++)
+        {
+            if(matrix[i][check++] == 1)   //Check the values along the main diagonial and sets it equal too true if all 1
+                reflexive = true;
+            else
+                reflexive = false;
+        }
+    }
 
-    public static void main(String[] args)
+
+public static void main(String[] args)
     {
         getFile();
+        isReflexive();
+        if(reflexive == true )
+            System.out.print("TRUEEEEE");
     }
 
 }
