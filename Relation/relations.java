@@ -177,6 +177,84 @@ public static void isTransitive()
 
 /***********************************************************************************************************************/
 
+public static void isEquivalnce()
+{
+    if(transitive == true && symmetric == true && reflexive == true)
+    {
+        equiv_relation = true;
+    }
+    else
+    {
+        equiv_relation = false;
+    }
+}
+
+/***********************************************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************************************************************************/
+
+public static void outputer()
+{
+    if(reflexive == true)
+    {
+        System.out.println("The relation is reflexive");
+    }
+    else
+    {
+        System.out.println("The relation is not reflexive");
+    }
+    if(symmetric == true)
+    {
+        System.out.println("The relation is symmetric");
+    }
+    else
+    {
+        System.out.println("The relation is not symmetric");
+    }
+    if(antisymmetric == true)
+    {
+        System.out.println("The relation is antisymmetric");
+    }
+    else
+    {
+        System.out.println("The relation is not antisymmetric");
+    }
+    if(transitive == true)
+    {
+        System.out.println("The relation is transitive");
+    }
+    else
+    {
+        System.out.println("The relation is not transitive");
+        //trasitive closure
+    }
+    if(equiv_relation == true)
+    {
+        System.out.println("The relation is a equivalence relation");
+        System.out.println("The equvilant classes are:");
+        //find matching rows of matrix
+    }
+    else
+    {
+        System.out.println("The relation is  not a equivalence relation");
+    }
+}
+
+
     public static void main(String[] args)
         {
             getFile();
@@ -184,8 +262,8 @@ public static void isTransitive()
             isSymetric();
             isAntisymetric();
             isTransitive();
-            if(transitive == true )
-                System.out.println("TRUEEEEE");
+            isEquivalnce();
+            outputer();
         }
 
 }
