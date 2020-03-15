@@ -157,9 +157,9 @@ public static void isTransitive()
             {
                 for(int k = 0; k<=7; k++)//loop through row to find any realtions
                 {
-                    if(matrix[j][k] == 1 && j!=k) //found a realation bRc
+                    if(matrix[j][k] == 1) //found a realation bRc
                     {
-                        if(matrix[i][k] == 1) //check for aRc
+                        if(matrix[i][k] == 1 ) //check for aRc
                         {
                             transitive = true;
                         }
@@ -173,6 +173,8 @@ public static void isTransitive()
             }
         }
     }
+
+    //if(symetric == true && reflexive == true)
 }
 
 /***********************************************************************************************************************/
@@ -191,17 +193,83 @@ public static void isEquivalnce()
 
 /***********************************************************************************************************************/
 
+public static void transitiveClosure()
+{
+    boolean done = false;
+    int i = 0;
+    int size = 0;
+    ArrayList<Integer> column = new ArrayList<Integer>();
+    ArrayList<Integer> row = new ArrayList<Integer>();
+    int matrixC[][] = matrix;
+ if(transitive == false)
+ {
+     while(done == false)
+     {
+        for(int j = 0; j<=7; j++)
+        {
+            if(matrixC[i][j] == 1 && matrixC[j][i] == 1)
+            {
+                matrixC[j][j] = 1;
+            }
+        }
+        i++;
+        if(i == 8)
+        {
+         done = true;
+        }
 
+     }
+     System.out.println("The matrix  closure is:");
+     for(int a = 0; a<=7; a++){
+         for(int b = 0; b<=7; b++)
+         {
+            System.out.print(matrixC[a][b]+" ");
+         }
+         System.out.println();
+        }
+ }
+}
+/***********************************************************************************************************************/
 
-
-
-
-
-
-
-
-
-
+public static void equiv_classes()
+{
+    int j = 0; //increment row outside of loop
+    boolean done = false;
+    int row[] = new int[8];
+    ArrayList<Integer> matchs = new ArrayList<Integer>();
+    while(done == false)
+    {
+        for(int i = 0; i<=7; i++)// move through row and make an array list
+        {
+             row[i] = matrix[j][i]; //save a row to single array
+        }
+       
+        for(int x = 0; x<=7; x++) // compare row with other rows to form equvilance classes
+        {
+            if(matrix[x][0] == row[0] && matrix[x][1] == row[1] && matrix[x][2] == row[2] && matrix[x][3] == row[3] &&
+            matrix[x][4] == row[4] && matrix[x][5] == row[5] && matrix[x][6] == row[6] && matrix[x][7] == row[7])
+            {
+                matchs.add(x);
+            }
+        }
+        matchs.add(500);
+        j++;
+        if(j == 7){
+        done = true;
+        }
+        
+    }
+    for(int i = 0; i<matchs.size(); i++){
+        if(matchs.get(i) == 500){
+            System.out.println();
+        }
+        else
+        {
+            System.out.print(matchs.get(i)+1);
+        }
+    }
+    
+}
 
 
 
@@ -240,13 +308,13 @@ public static void outputer()
     else
     {
         System.out.println("The relation is not transitive");
-        //trasitive closure
+        transitiveClosure();
     }
     if(equiv_relation == true)
     {
         System.out.println("The relation is a equivalence relation");
         System.out.println("The equvilant classes are:");
-        //find matching rows of matrix
+        equiv_classes();
     }
     else
     {
